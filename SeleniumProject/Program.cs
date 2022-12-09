@@ -16,14 +16,14 @@ namespace SeleniumProject
             driver = new ChromeDriver();
 
             /*
-            driver.Url = "https://localhost:44378/Account/Register";
+            driver.Url = "http://simple-website//Account/Login";
             driver.FindElement(By.Id("Email")).SendKeys("vincent.li@ie.com.au");
             driver.FindElement(By.Id("Password")).SendKeys("Password@1");
             driver.FindElement(By.Id("ConfirmPassword")).SendKeys("Password@1");
             driver.FindElement(By.CssSelector("input[value='Register']")).Click();
             */
 
-            driver.Url = "https://localhost:44378/Account/Login";
+            driver.Url = "http://simple-website//Account/Login";
 
             // Find the element that's ID attribute is 'account'(My Account) 
             
@@ -32,14 +32,15 @@ namespace SeleniumProject
             driver.FindElement(By.CssSelector("input[value='Log in']")).Click();
             
 
-            driver.Url = "https://localhost:44378/People";
+            driver.Url = "http://simple-website/People";
             var fullHtml = driver.PageSource;
 
             var doc = new HtmlDocument();
             doc.LoadHtml(fullHtml);
             ProcessPerson(doc.DocumentNode);
             ProcessSubjectTable(doc.DocumentNode.SelectNodes("//table[@class='subject']"));
-            
+            driver.Quit();
+
             Console.ReadLine();
         }
 
